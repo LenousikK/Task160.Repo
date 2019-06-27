@@ -14,8 +14,6 @@ public class MyTestWatcher implements TestWatcher {
 
     @Override
     public void testSuccessful(ExtensionContext extensionContext) {
-        WebDriver driver = ((BeforeAfter) extensionContext.getTestInstance().get()).driver;
-        driver.close();
     }
 
     @Override
@@ -26,8 +24,6 @@ public class MyTestWatcher implements TestWatcher {
     public void testFailed(ExtensionContext extensionContext, Throwable throwable) {
         WebDriver driver = ((BeforeAfter) extensionContext.getTestInstance().get()).driver;
         makeScreenshotOnFailure(driver);
-        driver.close();
-        ((BeforeAfter) extensionContext.getTestInstance().get()).driver = null;
     }
 
     @Attachment(value = "Screenshot On Failure", type = "image/png")
